@@ -22,6 +22,21 @@ kubectl apply -f deploy/vance-1.0.0.yaml
 kubectl delete -f deploy/vance-1.0.0.yaml
 ```
 
+### Verify the installation
+
+The all-in-one YAML file will create CRDs and run the Vance controller in the `vance` namespace.
+
+```
+$ kubectl get crds | grep vance
+connectors.vance.io                     2022-05-15T07:50:35Z
+```
+
+```
+$ kubectl get po -n vance
+NAME                                        READY   STATUS    RESTARTS      AGE
+vance-controller-manager-6d454547f9-lscvv   2/2     Running   4 (80s ago)   11m
+```
+
 [keda]: https://keda.sh/docs/2.7/deploy/
 [keda-http]: https://github.com/kedacore/http-add-on/blob/main/docs/install.md
 
